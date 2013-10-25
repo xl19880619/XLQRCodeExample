@@ -7,7 +7,6 @@
 //
 
 #import "XLQRCodeUtilities.h"
-
 @implementation XLQRCodeUtilities
 +(UIImage*)resetImageSizeBySize:(UIImage*)image withMaxSide:(CGFloat)d{
     CGFloat width = image.size.width;
@@ -48,5 +47,17 @@
 +(void)showAlertWithError:(NSError *)error{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ERROR", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles: nil];
     [alertView show];
+}
+
++ (AVCaptureConnection *)connectionWithMediaType:(NSString *)mediaType fromConnections:(NSArray *)connections
+{
+	for ( AVCaptureConnection *connection in connections ) {
+		for ( AVCaptureInputPort *port in [connection inputPorts] ) {
+			if ( [[port mediaType] isEqual:mediaType] ) {
+				return connection;
+			}
+		}
+	}
+	return nil;
 }
 @end

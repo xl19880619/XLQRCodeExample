@@ -149,6 +149,8 @@
 - (void)captureResult:(ZXCapture *)capture result:(ZXResult *)result{
 
     if (result.barcodeFormat == kBarcodeFormatQRCode) {
+        self.capture.delegate = nil;
+        [self.capture stop];
         NSString *resultString = result.text;
         resultString = [resultString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         NSLog(@"resultString %@",resultString);

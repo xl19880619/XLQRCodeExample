@@ -1,24 +1,24 @@
 //
-//  XLQRCodeScanCustomCaptureVC.m
+//  XLQRCodeScanCustomCaptureForiOS7VC.m
 //  XLQRCodeExample
 //
-//  Created by 谢 雷 on 13-10-23.
+//  Created by 谢 雷 on 13-10-25.
 //  Copyright (c) 2013年 谢 雷. All rights reserved.
 //
 
-#import "XLQRCodeScanCustomCaptureVC.h"
+#import "XLQRCodeScanCustomCaptureForiOS7VC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "XLQRCodeScanResultVC.h"
 #import <ZXingObjC.h>
 #import "XLQRCodeUtilities.h"
 
-@interface XLQRCodeScanCustomCaptureVC(InternalUtilityMethods)
+@interface XLQRCodeScanCustomCaptureForiOS7VC(InternalUtilityMethods)
 - (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition)position;
 - (AVCaptureDevice *) frontFacingCamera;
 - (AVCaptureDevice *) backFacingCamera;
 @end
 
-@implementation XLQRCodeScanCustomCaptureVC(InternalUtilityMethods)
+@implementation XLQRCodeScanCustomCaptureForiOS7VC(InternalUtilityMethods)
 
 // Find a camera with the specificed AVCaptureDevicePosition, returning nil if one is not found
 - (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position
@@ -45,22 +45,23 @@
 }
 
 @end
-
-@interface XLQRCodeScanCustomCaptureVC ()<AVCaptureVideoDataOutputSampleBufferDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+@interface XLQRCodeScanCustomCaptureForiOS7VC ()<AVCaptureMetadataOutputObjectsDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
 
     NSUInteger _numbers;
 }
 @property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic, strong) AVCaptureDeviceInput *input;
-@property (nonatomic, strong) AVCaptureVideoDataOutput *output;
+@property (nonatomic, strong) AVCaptureMetadataOutput *output;
 @property (nonatomic, weak) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 @property (nonatomic, weak) UIView *maskView;
 
 - (BOOL) setupSession;
+
+
 @end
 
-@implementation XLQRCodeScanCustomCaptureVC
+@implementation XLQRCodeScanCustomCaptureForiOS7VC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,7 +73,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-
+    
     [super viewWillAppear:animated];
     [UIView animateWithDuration:0.2 animations:^{
         self.maskView.alpha = 1;
@@ -101,9 +102,9 @@
     self.maskView = maskView;
     
     _numbers = 0;
-
+    
     __weak __typeof(&*self)weakSelf = self;
-
+    
     if ([self setupSession]) {
         
         AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
@@ -119,7 +120,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-
+    
     [super viewWillDisappear:animated];
     [UIView animateWithDuration:0.2 animations:^{
         self.maskView.alpha = 0;
@@ -130,15 +131,15 @@
     }
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Private Action
 - (BOOL) setupSession{
-
+    
     BOOL success = NO;
     
 	// Set torch and flash mode to auto
@@ -162,13 +163,14 @@
     // Init the device inputs
     self.input = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil];
     // Setup the still image file output
-    self.output = [[AVCaptureVideoDataOutput alloc] init];
-    [self.output setAlwaysDiscardsLateVideoFrames:YES];
-    // Use RGB frames instead of YUV to ease color processing
-	[self.output setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
-    dispatch_queue_t videoQueue = dispatch_queue_create("com.sunsetlakesoftware.colortracki ng.videoqueue", NULL);
-	[self.output setSampleBufferDelegate:self queue:videoQueue];
+    self.output = [[AVCaptureMetadataOutput alloc] init];
 
+    if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
+        self.output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+    }
+    dispatch_queue_t videoQueue = dispatch_queue_create("com.sunsetlakesoftware.colortracki ng.metadataqueue", NULL);
+	[self.output setMetadataObjectsDelegate:self queue:videoQueue];
+    
     self.session = [[AVCaptureSession alloc] init];
     if ([self.session canAddInput:self.input]) {
         [self.session addInput:self.input];
@@ -178,14 +180,14 @@
     }
     
     [self.session setSessionPreset:AVCaptureSessionPreset640x480];
-
+    
     success = YES;
     return success;
 }
 
 #pragma mark - Action
 - (void)checkQRImage:(UIImage*)image{
-
+    
 }
 
 - (void)openAlbum{
@@ -199,7 +201,7 @@
 }
 
 - (void)pushResultVC:(NSString *)qrString{
-
+    
     XLQRCodeScanResultVC *qrCodeScanResultVC = [[XLQRCodeScanResultVC alloc] init];
     qrCodeScanResultVC.resultString = qrString;
     [self.navigationController pushViewController:qrCodeScanResultVC animated:YES];
@@ -244,34 +246,23 @@
     }];
 }
 #pragma mark - delegate
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
-
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
+    
     _numbers ++;
-
     if (_numbers%20 == 1) {
-        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        
-        ZXCGImageLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithBuffer:imageBuffer];
-        ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
-        NSError *error = nil;
-        
-        ZXDecodeHints *hints = [ZXDecodeHints hints];
-        ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
-        ZXResult *result = [reader decode:bitmap hints:hints error:&error];
-        
-        if (error) {
-            
-        }else{
-            if (result.barcodeFormat == kBarcodeFormatQRCode) {
-                [self.session stopRunning];
-                NSString *resultString = result.text;
-                resultString = [resultString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                NSLog(@"resultString %@",resultString);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self pushResultVC:resultString];
-                });
+        for (AVMetadataObject *object in metadataObjects) {
+            if ([[object type] isEqualToString:AVMetadataObjectTypeQRCode]) {
+                AVMetadataMachineReadableCodeObject *code = (AVMetadataMachineReadableCodeObject *)object;
+                if (code.stringValue.length) {
+                    NSLog(@"code.stringValue %@",code.stringValue);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self pushResultVC:code.stringValue];
+                    });
+                }
             }
         }
     }
 }
+
+
 @end
