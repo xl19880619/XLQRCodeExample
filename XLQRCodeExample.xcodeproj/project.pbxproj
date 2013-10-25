@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		953F951B18C04860A2170983 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5E7C6579284FA08C008615 /* libPods.a */; };
+		D3100B2C1818F6AB007D7EE2 /* XLQRCodeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D3100B2B1818F6AB007D7EE2 /* XLQRCodeUtilities.m */; };
+		D3100B3018191028007D7EE2 /* XLQRCodeScanResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D3100B2E18191028007D7EE2 /* XLQRCodeScanResultVC.m */; };
+		D3100B3118191028007D7EE2 /* XLQRCodeScanResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3100B2F18191028007D7EE2 /* XLQRCodeScanResultVC.xib */; };
 		D319EA401817D6040063EF84 /* XLQRCodeMakeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D319EA3F1817D6040063EF84 /* XLQRCodeMakeVC.m */; };
 		D319EA431817D61C0063EF84 /* XLQRCodeScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D319EA421817D61C0063EF84 /* XLQRCodeScanVC.m */; };
 		D319EA461817D6430063EF84 /* XLQRCodeScanZXCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D319EA451817D6430063EF84 /* XLQRCodeScanZXCaptureVC.m */; };
 		D319EA491817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D319EA481817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.m */; };
+		D319EA521818D4D90063EF84 /* XLQRCodeMakeResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D319EA501818D4D90063EF84 /* XLQRCodeMakeResultVC.m */; };
+		D319EA531818D4D90063EF84 /* XLQRCodeMakeResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D319EA511818D4D90063EF84 /* XLQRCodeMakeResultVC.xib */; };
 		D35391A81817BC5C008CACA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35391A71817BC5C008CACA4 /* Foundation.framework */; };
 		D35391AA1817BC5C008CACA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35391A91817BC5C008CACA4 /* CoreGraphics.framework */; };
 		D35391AC1817BC5C008CACA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35391AB1817BC5C008CACA4 /* UIKit.framework */; };
@@ -41,6 +46,11 @@
 /* Begin PBXFileReference section */
 		4A5E7C6579284FA08C008615 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4ED55469CD3491DA35FC695 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D3100B2A1818F6AB007D7EE2 /* XLQRCodeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeUtilities.h; sourceTree = "<group>"; };
+		D3100B2B1818F6AB007D7EE2 /* XLQRCodeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeUtilities.m; sourceTree = "<group>"; };
+		D3100B2D18191028007D7EE2 /* XLQRCodeScanResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeScanResultVC.h; sourceTree = "<group>"; };
+		D3100B2E18191028007D7EE2 /* XLQRCodeScanResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeScanResultVC.m; sourceTree = "<group>"; };
+		D3100B2F18191028007D7EE2 /* XLQRCodeScanResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XLQRCodeScanResultVC.xib; sourceTree = "<group>"; };
 		D319EA3E1817D6040063EF84 /* XLQRCodeMakeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeMakeVC.h; sourceTree = "<group>"; };
 		D319EA3F1817D6040063EF84 /* XLQRCodeMakeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeMakeVC.m; sourceTree = "<group>"; };
 		D319EA411817D61C0063EF84 /* XLQRCodeScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeScanVC.h; sourceTree = "<group>"; };
@@ -49,6 +59,9 @@
 		D319EA451817D6430063EF84 /* XLQRCodeScanZXCaptureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeScanZXCaptureVC.m; sourceTree = "<group>"; };
 		D319EA471817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeScanCustomCaptureVC.h; sourceTree = "<group>"; };
 		D319EA481817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeScanCustomCaptureVC.m; sourceTree = "<group>"; };
+		D319EA4F1818D4D90063EF84 /* XLQRCodeMakeResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLQRCodeMakeResultVC.h; sourceTree = "<group>"; };
+		D319EA501818D4D90063EF84 /* XLQRCodeMakeResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLQRCodeMakeResultVC.m; sourceTree = "<group>"; };
+		D319EA511818D4D90063EF84 /* XLQRCodeMakeResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XLQRCodeMakeResultVC.xib; sourceTree = "<group>"; };
 		D35391A41817BC5C008CACA4 /* XLQRCodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLQRCodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35391A71817BC5C008CACA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D35391A91817BC5C008CACA4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,12 +150,20 @@
 				D35391BD1817BC5C008CACA4 /* XLViewController.m */,
 				D319EA3E1817D6040063EF84 /* XLQRCodeMakeVC.h */,
 				D319EA3F1817D6040063EF84 /* XLQRCodeMakeVC.m */,
+				D319EA4F1818D4D90063EF84 /* XLQRCodeMakeResultVC.h */,
+				D319EA501818D4D90063EF84 /* XLQRCodeMakeResultVC.m */,
+				D319EA511818D4D90063EF84 /* XLQRCodeMakeResultVC.xib */,
 				D319EA411817D61C0063EF84 /* XLQRCodeScanVC.h */,
 				D319EA421817D61C0063EF84 /* XLQRCodeScanVC.m */,
 				D319EA441817D6430063EF84 /* XLQRCodeScanZXCaptureVC.h */,
 				D319EA451817D6430063EF84 /* XLQRCodeScanZXCaptureVC.m */,
 				D319EA471817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.h */,
 				D319EA481817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.m */,
+				D3100B2D18191028007D7EE2 /* XLQRCodeScanResultVC.h */,
+				D3100B2E18191028007D7EE2 /* XLQRCodeScanResultVC.m */,
+				D3100B2F18191028007D7EE2 /* XLQRCodeScanResultVC.xib */,
+				D3100B2A1818F6AB007D7EE2 /* XLQRCodeUtilities.h */,
+				D3100B2B1818F6AB007D7EE2 /* XLQRCodeUtilities.m */,
 				D35391BF1817BC5C008CACA4 /* Images.xcassets */,
 				D35391AE1817BC5C008CACA4 /* Supporting Files */,
 			);
@@ -257,7 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3100B3118191028007D7EE2 /* XLQRCodeScanResultVC.xib in Resources */,
 				D35391C01817BC5C008CACA4 /* Images.xcassets in Resources */,
+				D319EA531818D4D90063EF84 /* XLQRCodeMakeResultVC.xib in Resources */,
 				D35391B21817BC5C008CACA4 /* InfoPlist.strings in Resources */,
 				D35391BB1817BC5C008CACA4 /* Main.storyboard in Resources */,
 			);
@@ -311,9 +334,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3100B3018191028007D7EE2 /* XLQRCodeScanResultVC.m in Sources */,
 				D319EA491817D6560063EF84 /* XLQRCodeScanCustomCaptureVC.m in Sources */,
+				D319EA521818D4D90063EF84 /* XLQRCodeMakeResultVC.m in Sources */,
 				D319EA401817D6040063EF84 /* XLQRCodeMakeVC.m in Sources */,
 				D35391B81817BC5C008CACA4 /* XLAppDelegate.m in Sources */,
+				D3100B2C1818F6AB007D7EE2 /* XLQRCodeUtilities.m in Sources */,
 				D35391B41817BC5C008CACA4 /* main.m in Sources */,
 				D35391BE1817BC5C008CACA4 /* XLViewController.m in Sources */,
 				D319EA461817D6430063EF84 /* XLQRCodeScanZXCaptureVC.m in Sources */,

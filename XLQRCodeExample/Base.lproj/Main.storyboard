@@ -24,7 +24,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="makeQRCodeAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="X58-qy-sa1"/>
                                     <segue destination="Jmj-c4-H6H" kind="push" id="cFE-MH-WGu"/>
                                 </connections>
                             </button>
@@ -36,7 +35,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="scanQRCdoeAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cDF-qc-2cC"/>
                                     <segue destination="1WR-5m-lCR" kind="push" id="I6I-VX-7zh"/>
                                 </connections>
                             </button>
@@ -44,10 +42,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lW1-rg-HHu"/>
-                    <connections>
-                        <outlet property="makeQRButton" destination="9QL-rt-eex" id="Kft-0X-E3C"/>
-                        <outlet property="scanQRButton" destination="KlM-Dc-9da" id="m4i-f7-nr4"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,9 +58,24 @@
                     <view key="view" contentMode="scaleToFill" id="aEy-Td-nPU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="输入想要生成的二维码信息。Please tap to input information." translatesAutoresizingMaskIntoConstraints="NO" id="Ecg-Bs-obe">
+                                <rect key="frame" x="0.0" y="70" width="320" height="177"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jmj-c4-H6H" id="my3-0s-1qb"/>
+                                </connections>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fu3-hc-UR0"/>
+                    <connections>
+                        <outlet property="textView" destination="Ecg-Bs-obe" id="gfa-vL-BBX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59u-jt-PH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

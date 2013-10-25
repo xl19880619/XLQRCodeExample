@@ -9,9 +9,6 @@
 #import "XLViewController.h"
 
 @interface XLViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *makeQRButton;
-@property (weak, nonatomic) IBOutlet UIButton *scanQRButton;
-
 @end
 
 @implementation XLViewController
@@ -26,13 +23,5 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)makeQRCodeAction:(id)sender {
-    
-}
-
-- (IBAction)scanQRCdoeAction:(id)sender {
-    
 }
 @end
