@@ -165,12 +165,9 @@
     // Setup the still image file output
     self.output = [[AVCaptureMetadataOutput alloc] init];
 
-    if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
-        self.output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
-    }
     dispatch_queue_t videoQueue = dispatch_queue_create("com.sunsetlakesoftware.colortracki ng.metadataqueue", NULL);
-	[self.output setMetadataObjectsDelegate:self queue:videoQueue];
-    
+    [self.output setMetadataObjectsDelegate:self queue:videoQueue];
+
     self.session = [[AVCaptureSession alloc] init];
     if ([self.session canAddInput:self.input]) {
         [self.session addInput:self.input];
@@ -178,6 +175,11 @@
     if ([self.session canAddOutput:self.output]) {
         [self.session addOutput:self.output];
     }
+    
+    if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
+        self.output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+    }
+
     
     [self.session setSessionPreset:AVCaptureSessionPreset640x480];
     
@@ -254,6 +256,7 @@
             if ([[object type] isEqualToString:AVMetadataObjectTypeQRCode]) {
                 AVMetadataMachineReadableCodeObject *code = (AVMetadataMachineReadableCodeObject *)object;
                 if (code.stringValue.length) {
+                    [self.session stopRunning];
                     NSLog(@"code.stringValue %@",code.stringValue);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self pushResultVC:code.stringValue];
